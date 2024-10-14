@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { GroupCreate } from '@storage/group/groupCreate'
 import { AppError } from '@utils/AppError'
 import { Alert } from 'react-native'
+import { ContainerStyled } from '@components/Container/styles'
 
 export function NewGroup() {
   const [group, setGroup] = useState('')
@@ -33,7 +34,7 @@ export function NewGroup() {
   }
 
   return (
-    <Container>
+    <ContainerStyled>
       <Header showBackButton />
       <Content>
         <Icon />
@@ -46,6 +47,6 @@ export function NewGroup() {
 
         <Button title="Criar" style={{ marginTop: 20 }} onPress={handleNew} />
       </Content>
-    </Container>
+    </ContainerStyled>
   )
 }

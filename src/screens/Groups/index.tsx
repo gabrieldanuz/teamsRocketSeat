@@ -10,6 +10,7 @@ import { Button } from '@components/Button'
 
 import { Container } from './styles'
 import { groupGetAll } from '@storage/group/groupsGetAll'
+import { ContainerStyled } from '@components/Container/styles'
 
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([])
@@ -41,7 +42,7 @@ export function Groups() {
   )
 
   return (
-    <Container>
+    <ContainerStyled>
       <Header />
       <Highlight title="Turmas" subtitle="Jogue com a sua turma" />
 
@@ -58,6 +59,6 @@ export function Groups() {
         showsVerticalScrollIndicator={false}
       />
       <Button title="Criar nova turma" onPress={handleNewGroup} />
-    </Container>
+    </ContainerStyled>
   )
 }
