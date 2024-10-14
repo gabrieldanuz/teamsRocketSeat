@@ -18,6 +18,7 @@ import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO'
 import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup'
 import { groupRemoveByName } from '@storage/group/groupRemoveByName'
 import { Loading } from '@components/Loading'
+import { ContainerStyled } from '@components/Container/styles'
 
 type RouteParams = {
   group: string
@@ -114,7 +115,7 @@ export function Players() {
   }, [team])
 
   return (
-    <Container>
+    <ContainerStyled>
       <Header showBackButton />
 
       <Highlight title={group} subtitle="adicione a galera e separe os times" />
@@ -175,6 +176,6 @@ export function Players() {
         type="SECONDARY"
         onPress={handleGroupRemove}
       />
-    </Container>
+    </ContainerStyled>
   )
 }
