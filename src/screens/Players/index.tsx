@@ -46,6 +46,15 @@ export function Players() {
       )
     }
 
+    if (playerAge === '') {
+      return Alert.alert(
+        'Atenção!',
+        'Informe a idade da pessoa para adicionar.'
+      )
+    } else if (Number(playerAge) < 18) {
+      return Alert.alert('Atenção', 'Precisa ter 18 anos para continuar.')
+    }
+
     const newPlayer = {
       name: newPlayerName,
       age: playerAge,
@@ -128,7 +137,7 @@ export function Players() {
       <Form>
         <Input
           inputRef={newPlayerNameInputRef}
-          placeholder="Nome da Pessoa"
+          placeholder="Nome"
           onChangeText={setNewPlayerName}
           value={newPlayerName}
           autoCorrect={false}
