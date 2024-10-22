@@ -6,7 +6,7 @@ import { Highlight } from '@components/Highlight'
 import { Input } from '@components/Input'
 import { ButtonIcon } from '@components/ButtonIcon'
 
-import { Container, Form, HeaderList, NumberOfPlayers } from './styles'
+import { Form, HeaderList, NumberOfPlayers } from './styles'
 import { PlayerCard } from '@components/PlayerCard'
 import { ListEmpty } from '@components/ListEmpty'
 import { Button } from '@components/Button'
@@ -27,6 +27,7 @@ type RouteParams = {
 export function Players() {
   const [isLoading, setIsLoading] = useState(true)
   const [newPlayerName, setNewPlayerName] = useState('')
+  const [playerAge, setPlayerAge] = useState('')
   const [team, setTeam] = useState('Time A')
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([])
 
@@ -35,6 +36,7 @@ export function Players() {
   const { group } = route.params as RouteParams
 
   const newPlayerNameInputRef = useRef<TextInput>(null)
+  const newPlayerAgeInputRef = useRef<TextInput>(null)
 
   async function handleAddPlayer() {
     if (newPlayerName.trim().length === 0) {
@@ -46,6 +48,7 @@ export function Players() {
 
     const newPlayer = {
       name: newPlayerName,
+      age: playerAge,
       team
     }
 
@@ -53,8 +56,10 @@ export function Players() {
       await playerAddByGroup(newPlayer, group)
 
       newPlayerNameInputRef.current?.blur()
+      newPlayerAgeInputRef.current?.blur()
 
       setNewPlayerName('')
+      setPlayerAge('')
       fetchPlayersByTeam()
     } catch (error) {
       if (error instanceof AppError) {
@@ -128,6 +133,15 @@ export function Players() {
           value={newPlayerName}
           autoCorrect={false}
           onSubmitEditing={handleAddPlayer}
+        />
+        <Input
+          inputRef={newPlayerAgeInputRef}
+          placeholder="Idade"
+          onChangeText={setPlayerAge}
+          value={playerAge.toString()}
+          autoCorrect={false}
+          onSubmitEditing={handleAddPlayer}
+          keyboardType="numeric"
           returnKeyType="done"
         />
         <ButtonIcon icon="add" onPress={handleAddPlayer} />
@@ -159,6 +173,7 @@ export function Players() {
         renderItem={({ item }) => (
           <PlayerCard
             name={item.name}
+            age={item.age}
             onRemove={() => handlePlayerRemove(item.name)}
           />
         )}

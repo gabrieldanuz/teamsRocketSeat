@@ -9,6 +9,7 @@ max-height: 56px;
 
 border-radius: 6px;
 padding: 16px;
+margin-right: 5px;
 
 
 ${({theme}) => css`
